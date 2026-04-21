@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Issa Jinete</title>
+    <style>
+        body { margin: 0; background: radial-gradient(circle, #1a0033, #000); overflow: hidden; height: 100vh; font-family: 'Arial', sans-serif; color: white; }
+        .star { position: absolute; font-size: 14px; font-weight: bold; text-shadow: 0 0 8px #fff; animation: float 6s infinite ease-in-out; cursor: pointer; white-space: nowrap; }
+        @keyframes float { 0%, 100% { transform: translateY(0) scale(1); opacity: 0.8; } 50% { transform: translateY(-15px) scale(1.1); opacity: 1; } }
+        .sun { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 90px; height: 90px; background: black; border-radius: 50%; box-shadow: 0 0 50px #ff00ff; z-index: 10; display: flex; align-items: center; justify-content: center; text-align: center; font-size: 12px; font-weight: bold; }
+        .main-love { position: absolute; top: 60%; left: 50%; transform: translateX(-50%); font-size: 20px; color: #ff69b4; text-shadow: 0 0 15px #ff1493; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="sun">ISSA<br>JINETE</div>
+    <div class="main-love">¡TE AMOOOO MUCHO! ❤️</div>
+
+    <div class="star" style="top: 15%; left: 20%;">✨ Mi amor eterno</div>
+    <div class="star" style="top: 30%; left: 75%;">🌟 Eres mi cielo</div>
+    <div class="star" style="top: 70%; left: 25%;">💖 Mi paz total</div>
+    <div class="star" style="top: 10%; left: 60%;">🔥 Nuestra pasión</div>
+    <div class="star" style="top: 80%; left: 70%;">💫 Cada recuerdo</div>
+    <div class="star" style="top: 45%; left: 15%;">🌸 Eres pura magia</div>
+    <div class="star" style="top: 85%; left: 40%;">👑 Mi reina</div>
+
+    <script>
+        document.querySelectorAll('.star').forEach(s => {
+            s.style.animationDelay = Math.random() * 5 + 's';
+        });
+    </script>
+</body>
+</html>
