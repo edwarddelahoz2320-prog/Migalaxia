@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Universo de Amor: Issa Jinete</title>
+    <style>
+        body { margin: 0; background: #05000a; overflow: hidden; height: 100vh; font-family: 'Arial', sans-serif; color: white; }
+        #canvas-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; }
+
+        /* Centro: Issa Jinete con efecto de latido profundo */
+        .center-nucleus { 
+            position: absolute; top: 45%; left: 50%; transform: translate(-50%, -50%); 
+            width: 140px; height: 140px; background: black; border-radius: 50%; 
+            box-shadow: 0 0 40px #ff00ff, 0 0 80px #7000ff; z-index: 100; 
+            display: flex; align-items: center; justify-content: center; text-align: center; 
+            font-size: 16px; font-weight: bold; border: 2px solid #ff00ff;
+            animation: pulse 2s infinite ease-in-out;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 30px #ff00ff; transform: translate(-50%, -50%) scale(1); }
+            50% { box-shadow: 0 0 70px #ff00ff, 0 0 100px #7000ff; transform: translate(-50%, -50%) scale(1.08); }
+            100% { box-shadow: 0 0 30px #ff00ff; transform: translate(-50%, -50%) scale(1); }
+        }
+
+        /* Planetas orbitando con diferentes distancias y velocidades */
+        .planet { position: absolute; border-radius: 50%; z-index: 50; animation: orbit linear infinite; }
+        .p1 { width: 22px; height: 22px; background: radial-gradient(circle at 30% 30%, #4dabf7, #1971c2); box-shadow: 0 0 15px #4dabf7; top: calc(45% - 11px); left: calc(50% - 11px); --radius: 115px; animation-duration: 7s; }
+        .p2 { width: 32px; height: 32px; background: radial-gradient(circle at 30% 30%, #ffc078, #f59f00); box-shadow: 0 0 20px #ffc078; top: calc(45% - 16px); left: calc(50% - 16px); --radius: 185px; animation-duration: 15s; }
+        .p2::after { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(15deg); width: 50px; height: 8px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.3); }
+        .p3 { width: 14px; height: 14px; background: radial-gradient(circle at 30% 30%, #ff6b6b, #c92a2a); box-shadow: 0 0 10px #ff6b6b; top: calc(45% - 7px); left: calc(50% - 7px); --radius: 85px; animation-duration: 5s; }
+
+        @keyframes orbit {
+            from { transform: rotate(0deg) translateX(var(--radius)) rotate(0deg); }
+            to { transform: rotate(360deg) translateX(var(--radius)) rotate(-360deg); }
+        }
+
+        /* Palabras de amor flotantes */
+        .word { position: absolute; font-size: 13px; font-weight: bold; text-shadow: 0 0 10px currentColor; animation: float 5s infinite ease-in-out; white-space: nowrap; z-index: 20; }
+        @keyframes float { 0%, 100% { transform: translateY(0) scale(1); opacity: 0.8; } 50% { transform: translateY(-15px) scale(1.1); opacity: 1; } }
+
+        .neon-blue { color: #00f2ff; } .neon-pink { color: #ff00de; } .neon-gold { color: #fff700; } .neon-red { color: #ff3131; }
+
+        .bottom-text { position: absolute; bottom: 8%; width: 100%; text-align: center; font-size: 18px; color: #ff69b4; text-shadow: 0 0 15px #ff1493; font-weight: bold; z-index: 100; padding: 0 10px; box-sizing: border-box; }
+    </style>
+</head>
+<body>
+    <canvas id="canvas-bg"></canvas>
+
+    <div class="planet p1"></div>
+    <div class="planet p2"></div>
+    <div class="planet p3"></div>
+
+    <div class="center-nucleus">ISSA<br>JINETE<br>❤️</div>
+    
+    <div class="bottom-text">
+        EN MI CORAZÓN LLEVO MARCADO TU NOMBRE ISSA ✨<br>
+        <span style="font-size: 22px; color: white;">¡TE AMO DEMASIADO MI CHIQUITA!</span>
+    </div>
+
+    <div class="word neon-blue" style="top: 10%; left: 10%;">Eres hermosa mi amor</div>
+    <div class="word neon-pink" style="top: 20%; left: 60%;">Eres la mejor mujer del mundo</div>
+    <div class="word neon-gold" style="top: 30%; left: 75%;">Eres asombrosa</div>
+    <div class="word neon-red" style="top: 40%; left: 15%;">Te amo demasiado mi chiquita</div>
+    <div class="word neon-blue" style="top: 55%; left: 10%;">Adorable</div>
+    <div class="word neon-pink" style="top: 70%; left: 20%;">Dulce</div>
+    <div class="word neon-gold" style="top: 85%; left: 65%;">Muy buena conmigo</div>
+    <div class="word neon-red" style="top: 5%; left: 45%;">Me encantas</div>
+    <div class="word neon-blue" style="top: 15%; left: 80%;">Eres asombrosa</div>
+    <div class="word neon-pink" style="top: 60%; left: 80%;">Eres hermosa mi amor</div>
+    <div class="word neon-gold" style="top: 90%; left: 15%;">Mi chiquita linda</div>
+    <div class="word neon-red" style="top: 25%; left: 35%;">Me encantas mucho</div>
+    <div class="word neon-blue" style="top: 45%; left: 70%;">Eres la mejor del mundo</div>
+
+    <script>
+        const canvas = document.getElementById('canvas-bg');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const starArray = [];
+        for(let i=0; i<150; i++) {
+            starArray.push({ x: Math.random() * canvas.width, y: Math.random() * canvas.height, size: Math.random() * 1.5, opacity: Math.random(), speed: Math.random() * 0.02 });
+        }
+
+        const shootingStars = [];
+        function createShootingStar() {
+            shootingStars.push({ x: Math.random() * canvas.width, y: 0, len: Math.random() * 80 + 20, speed: Math.random() * 10 + 5 });
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            // Estrellas de fondo
+            starArray.forEach(s => {
+                s.opacity += s.speed;
+                if(s.opacity > 1 || s.opacity < 0) s.speed = -s.speed;
+                ctx.globalAlpha = s.opacity;
+                ctx.fillStyle = "white";
+                ctx.beginPath(); ctx.arc(s.x, s.y, s.size, 0, Math.PI*2); ctx.fill();
+            });
+
+            // Estrellas fugaces
+            ctx.globalAlpha = 1;
+            shootingStars.forEach((ss, index) => {
+                ctx.strokeStyle = "rgba(255, 255, 255, 0.8)";
+                ctx.lineWidth = 2;
+                ctx.beginPath(); ctx.moveTo(ss.x, ss.y); ctx.lineTo(ss.x - ss.len, ss.y + ss.len); ctx.stroke();
+                ss.x += ss.speed; ss.y += ss.speed;
+                if (ss.x > canvas.width || ss.y > canvas.height) shootingStars.splice(index, 1);
+            });
+
+            if (Math.random() < 0.04) createShootingStar();
+            requestAnimationFrame(animate);
+        }
+        animate();
+
+        // Ajuste aleatorio de animación para palabras
+        document.querySelectorAll('.word').forEach(w => {
+            w.style.animationDelay = Math.random() * 5 + 's';
+        });
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+    </script>
+</body>
+</html>
